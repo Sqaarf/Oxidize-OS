@@ -1,0 +1,7 @@
+# To recompile standard libraries
+[unstable]
+build-std-features = ["compiler-builtins-mem"] # Memory functions
+build-std = ["core", "compiler_builtins"] # recompile all standard libraries
+
+[build]
+target = "x86_64-oxidize_os.json"
