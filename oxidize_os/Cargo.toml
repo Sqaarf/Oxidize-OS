@@ -1,0 +1,18 @@
+[package]
+name = "oxidize_os"
+version = "0.1.0"
+edition = "2021"
+authors = ["LinuxLab ESGI"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# Disabling stack unwinding for profile used by `cargo build`
+[profile.dev]
+panic = "abort"
+
+# Disabling stack unwinding for profile used by `cargo build --release`
+[profile.release]
+panic = "abort"
+
+[dependencies]
+
