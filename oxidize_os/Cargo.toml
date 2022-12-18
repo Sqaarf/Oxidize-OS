@@ -16,3 +16,6 @@ authors = ["LinuxLab ESGI"]
 
 [dependencies]
 bootloader = "0.9.8"
+
+[target.'cfg(target_os = "none")']
+runner = "bootimage runner"
