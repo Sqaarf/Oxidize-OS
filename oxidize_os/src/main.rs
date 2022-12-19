@@ -15,7 +15,9 @@ fn panic(_info: &PanicInfo) -> ! {
 // Entrypoint (Start of the program)
 #[no_mangle] // Disabling name mangling, allowing the name to be used by the linker
 pub extern "C" fn _start() -> ! { // pub extern "C" to allow calling from C
-    vga_buffer::print_something();    
+    use core::fmt::Write;
+    vga_buffer::WRITER.lock().write_str("Hello again").unwrap();
+    write!(vga_buffer::WRITER.lock(), ", some numbers: {} {}", 42, 1.337).unwrap();    
 
     loop{}
 }
