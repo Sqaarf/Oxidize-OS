@@ -9,18 +9,19 @@ mod vga_buffer;
 // Diverging function called on panic
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
+    println!("{}", _info);
     loop {}
 }
 
 // Entrypoint (Start of the program)
 #[no_mangle] // Disabling name mangling, allowing the name to be used by the linker
 pub extern "C" fn _start() -> ! { // pub extern "C" to allow calling from C
-    use core::fmt::Write;
-    vga_buffer::WRITER.lock().write_str("Hello again").unwrap();
-    write!(vga_buffer::WRITER.lock(), ", some numbers: {} {}", 42, 1.337).unwrap();    
-
+    println!("Hello World{}", "!");
+    panic!("Panic !!!");
     loop{}
 }
+
+
 
 // To build the project and run it:
 // cargo build
