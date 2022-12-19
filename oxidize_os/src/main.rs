@@ -12,8 +12,6 @@ fn panic(_info: &PanicInfo) -> ! {
     loop {}
 }
 
-static STRING: &[u8] = b"Oxidize OS";
-
 // Entrypoint (Start of the program)
 #[no_mangle] // Disabling name mangling, allowing the name to be used by the linker
 pub extern "C" fn _start() -> ! { // pub extern "C" to allow calling from C
