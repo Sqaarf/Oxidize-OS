@@ -1,9 +1,10 @@
-
 #![no_std] // Disabling the standard library
 #![no_main] // Disabling the Rust-level entry point
 
 // Handling panic messages
 use core::panic::PanicInfo;
+
+mod vga_buffer;
 
 // Diverging function called on panic
 #[panic_handler]
@@ -16,14 +17,8 @@ static STRING: &[u8] = b"Oxidize OS";
 // Entrypoint (Start of the program)
 #[no_mangle] // Disabling name mangling, allowing the name to be used by the linker
 pub extern "C" fn _start() -> ! { // pub extern "C" to allow calling from C
-    let vga_buffer = 0xb8000 as *mut u8;
+    vga_buffer::print_something();    
 
-    for (i, &byte) in STRING.iter().enumerate() {
-        unsafe {
-            *vga_buffer.offset(i as isize * 2) = byte;
-            *vga_buffer.offset(i as isize * 2 + 1) = 0xf;
-        }
-    }
     loop{}
 }
 
