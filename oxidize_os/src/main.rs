@@ -8,8 +8,8 @@ mod vga_buffer;
 
 // Diverging function called on panic
 #[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
-    println!("{}", _info);
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
     loop {}
 }
 
@@ -17,7 +17,7 @@ fn panic(_info: &PanicInfo) -> ! {
 #[no_mangle] // Disabling name mangling, allowing the name to be used by the linker
 pub extern "C" fn _start() -> ! { // pub extern "C" to allow calling from C
     println!("Hello World{}", "!");
-    panic!("Panic !!!");
+
     loop{}
 }
 
